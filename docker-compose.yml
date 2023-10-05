@@ -4,11 +4,11 @@ services:
   nextjs-app:
     build:
       context: .
-      dockerfile: Dockerfile
+      dockerfile: app/Dockerfile
     image: nextjs-app
     container_name: nextjs-app
     ports:
-      - "3000:3000"
+      - "8080:8080"
     networks:
       - app-network
 
@@ -26,7 +26,9 @@ services:
     image: grafana/grafana
     container_name: grafana
     volumes:
-      - ./grafana.ini:/etc/grafana/grafana.ini
+    #  - ./grafana.ini:/etc/grafana/grafana.ini
+#     - ./grafana_data:/var/lib/grafana
+     - ./grafana/provisioning:/etc/grafana/provisioning
     ports:
       - "3001:3000"
     networks:
